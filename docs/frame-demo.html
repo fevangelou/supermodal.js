@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frame mode demo</title>
+<style>
+    body {margin:0;padding:32px 24px;background:#fff;color:#15191d;font:400 1.0625rem/1.6 system-ui, sans-serif;}
+
+    main {max-width:60ch;margin:0 auto;}
+
+    h1 {margin:0 0 12px;font-size:1.75rem;line-height:1.15;}
+
+    code {font:400 .9em ui-monospace, monospace;}
+
+    button {min-height:44px;margin-top:8px;padding:0 20px;border:2px solid #15191d;border-radius:999px;background:#15191d;color:#fff;font:600 1rem/1 system-ui, sans-serif;cursor:pointer;}
+
+    button:hover {background:#d42a1f;border-color:#d42a1f;}
+</style>
+</head>
+<body>
+<main>
+    <h1>This page runs inside the modal</h1>
+    <p><code>SuperModal.frame(url, { title })</code> opens any page of your site in an iframe with the modal's look: a picker, a
+        form, a video page. Esc and the close button close it.</p>
+    <p>The page inside can close the modal itself, for example after a choice is made:</p>
+    <p><code>parent.SuperModal.close();</code></p>
+    <button type="button" onclick="parent.SuperModal.close();">Close from inside</button>
+</main>
+</body>
+</html>

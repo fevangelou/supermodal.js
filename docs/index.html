@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SuperModal.js: a dependency-free image modal</title>
+<meta name="description" content="An image modal (lightbox) for the web: galleries, zoom, swipe, slideshow and a grid view. No dependencies, 9.5 KB gzipped, MIT licensed.">
+<meta name="theme-color" content="#e9eef1">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono&display=swap">
+<link rel="stylesheet" href="dist/1.0.0/supermodal.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<script src="dist/1.0.0/supermodal.min.js" defer></script>
+<script src="assets/site.js" defer></script>
+</head>
+<body>
+
+<header class="wrap top">
+  <a class="wordmark" href="./">SuperModal.js</a>
+  <nav aria-label="Sections">
+    <a href="#demos">Demos</a>
+    <a href="#install">Install</a>
+    <a href="#reference">Reference</a>
+    <a href="https://github.com/fevangelou/supermodal.js">GitHub</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <h1>SuperModal.js <span>an image modal that gets out of the way</span></h1>
+    <p class="lede">Galleries, zoom, swipe, a slideshow and a grid view for the images on your page. No dependencies, 9.5 KB of JavaScript gzipped.</p>
+    <div class="actions">
+      <button class="btn btn--solid" type="button" data-demo="open-sheet">Open the gallery</button>
+      <a class="btn" href="#install">Get v1.0.0</a>
+    </div>
+  </div>
+
+  <div class="sheet" id="sheet">
+    <div class="strip">
+      <a class="frame" href="images/studio/polar-lights.webp" data-thumb="images/studio/polar-lights-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Green and red polar lights&quot;, &quot;caption&quot;: &quot;Photo by Nelly Volkovich, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Green_and_red_polar_lights_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/polar-lights.webp&quot;, &quot;srcset&quot;: &quot;images/studio/polar-lights-960.webp 960w, images/studio/polar-lights.webp 1920w&quot;}" data-frame="12  ▸12A"><img src="images/studio/polar-lights-960.webp" width="960" height="540" alt="Green and red polar lights"></a>
+      <a class="frame" href="images/studio/light-trails.webp" data-thumb="images/studio/light-trails-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Neon light trails in Munich&quot;, &quot;caption&quot;: &quot;Photo by Emre Karatas, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Neon_light_trails_in_Munich_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/light-trails.webp&quot;, &quot;srcset&quot;: &quot;images/studio/light-trails-960.webp 960w, images/studio/light-trails.webp 1920w&quot;}" data-frame="13  ▸13A"><img src="images/studio/light-trails-960.webp" width="960" height="540" alt="Neon light trails in Munich"></a>
+      <a class="frame frame--pick" href="images/studio/orange-towers.webp" data-thumb="images/studio/orange-towers-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Orange reflective architecture&quot;, &quot;caption&quot;: &quot;Photo by Alex wong, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Orange_reflective_architecture_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/orange-towers.webp&quot;, &quot;srcset&quot;: &quot;images/studio/orange-towers-960.webp 960w, images/studio/orange-towers.webp 1920w&quot;}" data-frame="14  ▸14A"><img src="images/studio/orange-towers-960.webp" width="960" height="540" alt="Orange reflective architecture"><svg viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path d="M52 3C24 2 4 13 3 30c-1 17 21 28 48 27 27-1 46-12 46-28C97 12 77 3 46 5c-6 0-12 1-17 3" vector-effect="non-scaling-stroke"/></svg></a>
+      <a class="frame" href="images/studio/spiral-stairs.webp" data-thumb="images/studio/spiral-stairs-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Spiral staircase&quot;, &quot;caption&quot;: &quot;Photo by chuttersnap, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Spiral_staircase_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/spiral-stairs.webp&quot;, &quot;srcset&quot;: &quot;images/studio/spiral-stairs-960.webp 960w, images/studio/spiral-stairs.webp 1920w&quot;}" data-frame="15  ▸15A"><img src="images/studio/spiral-stairs-960.webp" width="960" height="540" alt="Spiral staircase"></a>
+      <a class="frame" href="images/studio/violet-desk.webp" data-thumb="images/studio/violet-desk-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Desktop purple neon light&quot;, &quot;caption&quot;: &quot;Photo by Redd Angelo, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Desktop_purple_neon_light_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/violet-desk.webp&quot;, &quot;srcset&quot;: &quot;images/studio/violet-desk-960.webp 960w, images/studio/violet-desk.webp 1920w&quot;}" data-frame="16  ▸16A"><img src="images/studio/violet-desk-960.webp" width="960" height="540" alt="Desktop purple neon light"></a>
+    </div>
+    <div class="strip">
+      <a class="frame" href="images/studio/light-curves.webp" data-thumb="images/studio/light-curves-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Lights on the roof&quot;, &quot;caption&quot;: &quot;Photo by Joel Mbugua, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Lights_on_the_roof_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/light-curves.webp&quot;, &quot;srcset&quot;: &quot;images/studio/light-curves-960.webp 960w, images/studio/light-curves.webp 1920w&quot;}" data-frame="17  ▸17A"><img src="images/studio/light-curves-960.webp" width="960" height="540" alt="Lights on the roof"></a>
+      <a class="frame" href="images/studio/twisting-tower.webp" data-thumb="images/studio/twisting-tower-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Twisting building facade&quot;, &quot;caption&quot;: &quot;Photo by Pavel Fertikh, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Twisting_building_facade_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/twisting-tower.webp&quot;, &quot;srcset&quot;: &quot;images/studio/twisting-tower-960.webp 960w, images/studio/twisting-tower.webp 1920w&quot;}" data-frame="18  ▸18A"><img src="images/studio/twisting-tower-960.webp" width="960" height="540" alt="Twisting building facade"></a>
+      <a class="frame" href="images/studio/code-screens.webp" data-thumb="images/studio/code-screens-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Coding workstation&quot;, &quot;caption&quot;: &quot;Photo by Farzad Nazifi, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Coding_workstation_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/code-screens.webp&quot;, &quot;srcset&quot;: &quot;images/studio/code-screens-960.webp 960w, images/studio/code-screens.webp 1920w&quot;}" data-frame="19  ▸19A"><img src="images/studio/code-screens-960.webp" width="960" height="540" alt="Coding workstation"></a>
+      <a class="frame" href="images/studio/perforated-facade.webp" data-thumb="images/studio/perforated-facade-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Swiss Cheese Architecture&quot;, &quot;caption&quot;: &quot;Photo by Dmitri Popov, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Swiss_Cheese_Architecture_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/perforated-facade.webp&quot;, &quot;srcset&quot;: &quot;images/studio/perforated-facade-960.webp 960w, images/studio/perforated-facade.webp 1920w&quot;}" data-frame="20  ▸20A"><img src="images/studio/perforated-facade-960.webp" width="960" height="540" alt="Swiss Cheese Architecture"></a>
+      <a class="frame" href="images/studio/light-painting.webp" data-thumb="images/studio/light-painting-960.webp" data-supermodal="{&quot;group&quot;: &quot;studio&quot;, &quot;title&quot;: &quot;Water, Light and long shutter speeds&quot;, &quot;caption&quot;: &quot;Photo by Ahmad Dirini, CC0. &lt;a href=\&quot;https://commons.wikimedia.org/wiki/File:Water,_Light_and_long_shutter_speeds_(Unsplash).jpg\&quot; target=\&quot;_blank\&quot;&gt;Source: Wikimedia Commons (Unsplash)&lt;/a&gt;&quot;, &quot;download&quot;: &quot;images/studio/light-painting.webp&quot;, &quot;srcset&quot;: &quot;images/studio/light-painting-960.webp 960w, images/studio/light-painting.webp 1920w&quot;}" data-frame="21  ▸21A"><img src="images/studio/light-painting-960.webp" width="960" height="540" alt="Water, Light and long shutter speeds"></a>
+    </div>
+  </div>
+  <p class="wrap sheet-note">Click any frame. On a phone, swipe the strips sideways.</p>
+
+  <section class="wrap" id="features" aria-labelledby="features-title">
+    <h2 id="features-title">What it does</h2>
+    <p class="intro">You write plain links to your images. SuperModal turns them into a full-screen viewer that works the same with a mouse, a keyboard or a finger.</p>
+    <ul class="features">
+      <li><h3>Galleries from plain links</h3><p>Add <code>data-supermodal</code> to your links. Links with the same name become one gallery, with a thumbnail strip.</p></li>
+      <li><h3>Zoom and pan</h3><p>Double click or double tap, pinch, the zoom button or Z. Drag to look around the zoomed image.</p></li>
+      <li><h3>Made for touch</h3><p>Swipe between images and swipe down to close. On phones the extra tools fold into one menu.</p></li>
+      <li><h3>Slideshow and grid view</h3><p>Space starts a slideshow with a progress line. G shows every image of the gallery at once.</p></li>
+      <li><h3>Sharp on every screen</h3><p>Give an image a <code>srcset</code> and the browser loads the file that fits the screen.</p></li>
+      <li><h3>Part of the page</h3><p>The Back button closes it, focus returns to the link you clicked, and the page doesn't jump when scrolling is locked.</p></li>
+      <li><h3>Accessible</h3><p>A real <code>&lt;dialog&gt;</code> with labelled buttons, full keyboard control and support for reduced motion.</p></li>
+      <li><h3>Safe captions</h3><p>Caption HTML is cleaned against an allowlist, so captions written by visitors can't run scripts.</p></li>
+      <li><h3>Drop-in replacement</h3><p>With compat mode on, links written for FancyBox, Lightbox2, prettyPhoto, Colorbox and others open in SuperModal unchanged.</p></li>
+    </ul>
+  </section>
+
+  <section class="wrap" id="demos" aria-labelledby="demos-title">
+    <h2 id="demos-title">Try it</h2>
+    <p class="intro">Each demo shows the markup or the call that produced it. The event log under the JavaScript demo records every demo on this page.</p>
+
+    <div class="demo">
+      <div>
+        <h3>A gallery in the light theme</h3>
+        <p>Options can travel with the markup: the first link's JSON sets the light theme for the whole gallery. Press G for the grid view.</p>
+        <div class="thumbs">
+          <a href="images/harbour/world-04.webp" data-supermodal="{&quot;group&quot;: &quot;harbour&quot;, &quot;title&quot;: &quot;Boat Ship&quot;, &quot;caption&quot;: &quot;Photo by Leeroy, CC0. &lt;a href=\&quot;https://stocksnap.io/photo/boat-ship-111908C67E\&quot; target=\&quot;_blank\&quot;&gt;Source: StockSnap&lt;/a&gt;&quot;, &quot;theme&quot;: &quot;light&quot;, &quot;thumbs&quot;: true}"><img src="images/harbour/world-04-480.webp" width="480" height="270" alt="Boat Ship" loading="lazy"></a>
+          <a href="images/harbour/world-09.webp" data-supermodal="{&quot;group&quot;: &quot;harbour&quot;, &quot;title&quot;: &quot;Boats Ships&quot;, &quot;caption&quot;: &quot;Photo by Markus Spiske, CC0. &lt;a href=\&quot;https://stocksnap.io/photo/boats-ships-27D9PQ26RJ\&quot; target=\&quot;_blank\&quot;&gt;Source: StockSnap&lt;/a&gt;&quot;}"><img src="images/harbour/world-09-480.webp" width="480" height="270" alt="Boats Ships" loading="lazy"></a>
+          <a href="images/harbour/world-14.webp" data-supermodal="{&quot;group&quot;: &quot;harbour&quot;, &quot;title&quot;: &quot;Cargo Harbor&quot;, &quot;caption&quot;: &quot;Photo by Leeroy, CC0. &lt;a href=\&quot;https://stocksnap.io/photo/cargo-harbor-1FA263F8AF\&quot; target=\&quot;_blank\&quot;&gt;Source: StockSnap&lt;/a&gt;&quot;}"><img src="images/harbour/world-14-480.webp" width="480" height="270" alt="Cargo Harbor" loading="lazy"></a>
+          <a href="images/harbour/world-16.webp" data-supermodal="{&quot;group&quot;: &quot;harbour&quot;, &quot;title&quot;: &quot;Bridge River&quot;, &quot;caption&quot;: &quot;Photo by Pablo Garcia Saldaña, CC0. &lt;a href=\&quot;https://stocksnap.io/photo/bridge-river-7MS7NDI263\&quot; target=\&quot;_blank\&quot;&gt;Source: StockSnap&lt;/a&gt;&quot;}"><img src="images/harbour/world-16-480.webp" width="480" height="270" alt="Bridge River" loading="lazy"></a>
+          <a href="images/harbour/world-18.webp" data-supermodal="{&quot;group&quot;: &quot;harbour&quot;, &quot;title&quot;: &quot;Fishingboat Ship&quot;, &quot;caption&quot;: &quot;Photo by Leeroy, CC0. &lt;a href=\&quot;https://stocksnap.io/photo/fishingboat-ship-4B1CE21DB7\&quot; target=\&quot;_blank\&quot;&gt;Source: StockSnap&lt;/a&gt;&quot;}"><img src="images/harbour/world-18-480.webp" width="480" height="270" alt="Fishingboat Ship" loading="lazy"></a>
+          <a href="images/harbour/world-22.webp" data-supermodal="{&quot;group&quot;: &quot;harbour&quot;, &quot;title&quot;: &quot;Sunset Sea&quot;, &quot;caption&quot;: &quot;Photo by Sergei Gussev, CC0. &lt;a href=\&quot;https://stocksnap.io/photo/sunset-sea-UF55ZWLEE6\&quot; target=\&quot;_blank\&quot;&gt;Source: StockSnap&lt;/a&gt;&quot;}"><img src="images/harbour/world-22-480.webp" width="480" height="270" alt="Sunset Sea" loading="lazy"></a>
+          <a href="images/harbour/world-24.webp" data-supermodal="{&quot;group&quot;: &quot;harbour&quot;, &quot;title&quot;: &quot;Catalina Harbor&quot;, &quot;caption&quot;: &quot;Photo by Jay Mantri, CC0. &lt;a href=\&quot;https://stocksnap.io/photo/catalina-harbor-SIM51MKKXS\&quot; target=\&quot;_blank\&quot;&gt;Source: StockSnap&lt;/a&gt;&quot;}"><img src="images/harbour/world-24-480.webp" width="480" height="270" alt="Catalina Harbor" loading="lazy"></a>
+        </div>
+      </div>
+      <div>
+<div class="code"><pre><code>&lt;a href=&quot;images/harbour/world-04.webp&quot;
+   data-supermodal=&#x27;{&quot;group&quot;:&quot;harbour&quot;,&quot;theme&quot;:&quot;light&quot;,&quot;title&quot;:&quot;Boat Ship&quot;}&#x27;&gt;
+  &lt;img src=&quot;images/harbour/world-04-480.webp&quot; alt=&quot;Boat Ship&quot;&gt;
+&lt;/a&gt;
+&lt;a href=&quot;images/harbour/world-09.webp&quot;
+   data-supermodal=&#x27;{&quot;group&quot;:&quot;harbour&quot;,&quot;title&quot;:&quot;Boats Ships&quot;}&#x27;&gt;
+  &lt;img src=&quot;images/harbour/world-09-480.webp&quot; alt=&quot;Boats Ships&quot;&gt;
+&lt;/a&gt;
+&lt;!-- ...more links in the &quot;harbour&quot; group --&gt;</code></pre></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div>
+        <h3>A single image</h3>
+        <p>A link without a group opens on its own: no counter, arrows or strip.</p>
+        <a class="single" href="images/studio/twisting-tower.webp" data-supermodal data-title="Twisting building facade" data-caption="Photo by Pavel Fertikh, CC0."><img src="images/studio/twisting-tower-960.webp" width="960" height="540" alt="Twisting building facade" loading="lazy"></a>
+      </div>
+      <div>
+<div class="code"><pre><code>&lt;a href=&quot;tower.webp&quot; data-supermodal
+   data-title=&quot;Twisting building facade&quot;
+   data-caption=&quot;Photo by Pavel Fertikh, CC0.&quot;&gt;
+  &lt;img src=&quot;tower-960.webp&quot; alt=&quot;Twisting building facade&quot;&gt;
+&lt;/a&gt;</code></pre></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div>
+        <h3>From JavaScript</h3>
+        <p>Open any list of images, with or without links on the page. This one starts the slideshow.</p>
+        <button class="btn" type="button" data-demo="open-array">Open three images</button>
+        <div class="log" id="log" aria-live="off"></div>
+      </div>
+      <div>
+<div class="code"><pre><code>SuperModal.open([
+  { src: &#x27;polar-lights.webp&#x27;, title: &#x27;Green and red polar lights&#x27; },
+  { src: &#x27;light-trails.webp&#x27;, title: &#x27;Neon light trails in Munich&#x27; },
+  { src: &#x27;spiral-stairs.webp&#x27;, title: &#x27;Spiral staircase&#x27; }
+], 0, { autostart: true, interval: 3 });
+
+document.addEventListener(&#x27;supermodal:change&#x27;, (e) =&gt; {
+  console.log(e.detail.index, e.detail.item.title);
+});</code></pre></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div>
+        <h3>A page in the modal</h3>
+        <p>Frame mode opens a page of your site in an iframe with the same look: a picker, a form, a video.</p>
+        <button class="btn" type="button" data-demo="open-frame">Open a page</button>
+      </div>
+      <div>
+<div class="code"><pre><code>SuperModal.frame(&#x27;picker.html&#x27;, { title: &#x27;Choose an image&#x27; });
+
+// in picker.html, when the visitor is done:
+parent.SuperModal.close();</code></pre></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div>
+        <h3>Markup written for another lightbox</h3>
+        <p>These links were written for FancyBox. With compat mode on (this page turns it on), SuperModal opens them as they are.</p>
+        <div class="thumbs">
+          <a href="images/studio/light-painting.webp" data-fancybox="old" data-caption="Written for FancyBox: data-fancybox and data-caption."><img src="images/studio/light-painting-960.webp" width="960" height="540" alt="Water, Light and long shutter speeds" loading="lazy"></a>
+          <a href="images/studio/violet-desk.webp" data-fancybox="old" data-caption="Same group, same markup."><img src="images/studio/violet-desk-960.webp" width="960" height="540" alt="Desktop purple neon light" loading="lazy"></a>
+          <a href="images/studio/code-screens.webp" data-fancybox="old" data-caption="No changes to the HTML."><img src="images/studio/code-screens-960.webp" width="960" height="540" alt="Coding workstation" loading="lazy"></a>
+        </div>
+      </div>
+      <div>
+<div class="code"><pre><code>&lt;script&gt;window.SuperModalDefaults = { compat: true };&lt;/script&gt;
+
+&lt;a href=&quot;night.webp&quot; data-fancybox=&quot;old&quot;
+   data-caption=&quot;Written for FancyBox&quot;&gt;
+  &lt;img src=&quot;night-960.webp&quot; alt=&quot;&quot;&gt;
+&lt;/a&gt;</code></pre></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="install" aria-labelledby="install-title">
+    <h2 id="install-title">Install</h2>
+    <p class="intro">Two files, no build step. Every release keeps its own address, so a page that loads <code>dist/1.0.0/</code> never changes under you; <code>dist/latest/</code> always has the newest release.</p>
+<div class="code"><pre><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://fevangelou.github.io/supermodal.js/dist/1.0.0/supermodal.min.css&quot;&gt;
+&lt;script src=&quot;https://fevangelou.github.io/supermodal.js/dist/1.0.0/supermodal.min.js&quot; defer&gt;&lt;/script&gt;</code></pre></div>
+    <p>Or download <code>supermodal.min.js</code> and <code>supermodal.min.css</code> from the <a href="https://github.com/fevangelou/supermodal.js/tree/main/dist">dist folder on GitHub</a> and host them yourself. The readable sources are next to them.</p>
+    <p>Then add <code>data-supermodal</code> to the links of your images. Use the same name for the links of one gallery:</p>
+<div class="code"><pre><code>&lt;a href=&quot;photos/beach.jpg&quot; data-supermodal=&quot;holiday&quot;
+   data-title=&quot;The beach&quot; data-caption=&quot;Day one, &lt;b&gt;early&lt;/b&gt; morning&quot;&gt;
+  &lt;img src=&quot;photos/beach-small.jpg&quot; alt=&quot;The beach&quot;&gt;
+&lt;/a&gt;
+&lt;a href=&quot;photos/harbour.jpg&quot; data-supermodal=&quot;holiday&quot;&gt;
+  &lt;img src=&quot;photos/harbour-small.jpg&quot; alt=&quot;The harbour&quot;&gt;
+&lt;/a&gt;</code></pre></div>
+    <p>That's all. Links added later, for example by infinite scrolling, work too: SuperModal listens for clicks on the whole page.</p>
+  </section>
+
+  <section class="wrap ref" id="reference" aria-labelledby="reference-title">
+    <h2 id="reference-title">Reference</h2>
+    <p class="intro">Everything SuperModal reads from your markup, the options, the JavaScript API, its events and the CSS variables you can change.</p>
+
+    <h3>Markup</h3>
+    <div class="table"><table>
+      <thead><tr><th>Attribute</th><th>On</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>data-supermodal</code></td><td>a link</td><td><p>Opens the link's image in the modal. The value is a group name (<code>"holiday"</code>): links with the same name form a gallery. Leave it empty for a single image, or give JSON with any of <code>group</code>, <code>title</code>, <code>caption</code>, <code>srcset</code>, <code>thumb</code>, <code>download</code>, <code>html</code> and the gallery options below.</p></td></tr>
+        <tr><td><code>data-title</code></td><td>a link</td><td>Title shown above the caption.</td></tr>
+        <tr><td><code>data-caption</code></td><td>a link</td><td>Caption; HTML allowed (links, emphasis, lists) and cleaned. Without it, the link's <code>title</code> is used.</td></tr>
+        <tr><td><code>data-srcset</code></td><td>a link</td><td>A <code>srcset</code> for the full-screen image, e.g. <code>"a-960.webp 960w, a.webp 1920w"</code>.</td></tr>
+        <tr><td><code>data-thumb</code></td><td>a link</td><td>Image for the thumbnail strip and the grid view. Default: the link's <code>&lt;img&gt;</code>, else the image itself.</td></tr>
+        <tr><td><code>data-download</code></td><td>a link</td><td>Shows a download button for this file.</td></tr>
+        <tr><td><code>data-supermodal-item</code></td><td>any element</td><td>JSON with a <code>src</code> and a <code>group</code>: an image that belongs to a gallery but has no link on the page. These come first in the gallery.</td></tr>
+        <tr><td><code>&lt;template class="supermodal-html" data-supermodal-for="holiday"&gt;</code></td><td>the page</td><td>Extra HTML shown under every image of that gallery, such as a credit line. Scripts in it are removed.</td></tr>
+        <tr><td><code>data-supermodal-gallery</code></td><td>a container</td><td>Compat mode: groups links that only have another lightbox's class (<code>.swipebox</code>, <code>.highslide</code>...) per container instead of per page.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Options</h3>
+    <p>Set them for the page with <code>SuperModal.setDefaults()</code>, or in <code>window.SuperModalDefaults</code> before the script loads. <code>theme</code>, <code>thumbs</code>, <code>loop</code>, <code>autostart</code> and <code>interval</code> can also be set per gallery, in the JSON of its first link, or per <code>SuperModal.open()</code> call.</p>
+    <div class="table"><table>
+      <thead><tr><th>Option</th><th>Default</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>theme</code></td><td><code>'dark'</code></td><td><code>'dark'</code> or <code>'light'</code>.</td></tr>
+        <tr><td><code>thumbs</code></td><td><code>true</code></td><td>Shows the thumbnail strip under the image.</td></tr>
+        <tr><td><code>loop</code></td><td><code>true</code></td><td>Goes from the last image back to the first.</td></tr>
+        <tr><td><code>autostart</code></td><td><code>false</code></td><td>Starts the slideshow when the modal opens.</td></tr>
+        <tr><td><code>interval</code></td><td><code>5</code></td><td>Seconds per image in the slideshow.</td></tr>
+        <tr><td><code>compat</code></td><td><code>false</code></td><td>Also opens links written for other lightboxes: <code>data-fancybox</code>, <code>data-lightbox</code>, Fresco, Strip, Lightview, Nivo, <code>rel="prettyPhoto[…]"</code>, <code>rel="lightbox[…]"</code>, Colorbox, Swipebox, Highslide, Magnific Popup. Only links to image files.</td></tr>
+        <tr><td><code>strings</code></td><td>English</td><td>Button labels and messages: <code>close</code>, <code>prev</code>, <code>next</code>, <code>play</code>, <code>pause</code>, <code>zoom</code>, <code>grid</code>, <code>download</code>, <code>fullscreen</code>, <code>more</code>, <code>counter</code> (<code>'Image {i} of {n}'</code>), <code>loading</code>, <code>error</code>.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>JavaScript</h3>
+    <div class="table"><table>
+      <thead><tr><th>Method</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td><code>SuperModal.open(items, index, options)</code></td><td><p>Opens a gallery at <code>index</code>. <code>items</code> is a CSS selector, a list of links, or an array of objects with <code>src</code> and optionally <code>srcset</code>, <code>thumb</code>, <code>title</code>, <code>caption</code>, <code>download</code>, <code>html</code>. <code>options</code> takes the options above and <code>trigger</code>, the element that gets the focus back on close. Returns <code>false</code> when there's nothing to show.</p></td></tr>
+        <tr><td><code>SuperModal.close()</code></td><td>Closes the modal (and frame mode).</td></tr>
+        <tr><td><code>SuperModal.next()</code>, <code>prev()</code>, <code>goTo(index)</code></td><td>Moves through the open gallery.</td></tr>
+        <tr><td><code>SuperModal.isOpen()</code></td><td>Whether the modal is open.</td></tr>
+        <tr><td><code>SuperModal.frame(url, { title })</code></td><td>Opens a page of your site in an iframe with the modal's look.</td></tr>
+        <tr><td><code>SuperModal.setDefaults(options)</code></td><td>Changes the options for everything opened afterwards.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Events</h3>
+    <p>Dispatched on <code>document</code>; the details are in <code>event.detail</code>.</p>
+    <div class="table"><table>
+      <thead><tr><th>Event</th><th>When</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><code>supermodal:open</code></td><td>The modal opened.</td><td><code>index</code>, <code>item</code>, <code>items</code></td></tr>
+        <tr><td><code>supermodal:change</code></td><td>Another image is shown.</td><td><code>index</code>, <code>item</code>, <code>items</code></td></tr>
+        <tr><td><code>supermodal:close</code></td><td>The modal closed.</td><td><code>index</code>, <code>item</code></td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Keyboard and gestures</h3>
+    <div class="table"><table>
+      <thead><tr><th>Input</th><th>What it does</th></tr></thead>
+      <tbody>
+        <tr><td>Left and right arrows, swipe sideways</td><td>Previous and next image.</td></tr>
+        <tr><td>Home, End</td><td>First and last image.</td></tr>
+        <tr><td>Space</td><td>Starts or pauses the slideshow.</td></tr>
+        <tr><td>Z, double click, double tap, pinch, Ctrl + wheel</td><td>Zooms in and out; drag to pan.</td></tr>
+        <tr><td>G</td><td>Shows or hides the grid view.</td></tr>
+        <tr><td>Esc</td><td>Leaves the zoom, the grid view or the phone menu first, then closes.</td></tr>
+        <tr><td>Swipe down, the Back button</td><td>Closes.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Styling</h3>
+    <p>Change any of these variables on <code>.supermodal</code>, or on <code>.supermodal--light</code> for the light theme only:</p>
+<div class="code"><pre><code>.supermodal {
+    --sm-accent: #0a7cff;   /* active buttons, focus, slideshow progress */
+    --sm-bg: rgba(16, 16, 18, .985);
+    --sm-fg: #f2f2f2;
+    --sm-muted: #a8a8ad;
+    --sm-btn-bg: rgba(255, 255, 255, .08);
+    --sm-btn-bg-hover: rgba(255, 255, 255, .18);
+    --sm-font: inherit;
+    --sm-font-size: 15px;
+    --sm-bar-height: 52px;
+    --sm-btn-size: 40px;
+    --sm-stage-pad: 56px;   /* room for the arrows beside the image */
+    --sm-thumb-size: 56px;
+    --sm-grid-gap: 8px;
+    --sm-radius: 4px;
+    --sm-duration: .25s;
+    --sm-easing: cubic-bezier(.2, .7, .2, 1);
+}</code></pre></div>
+    <p>SuperModal works in the current versions of Chrome, Edge, Firefox and Safari, on desktops and phones.</p>
+  </section>
+</main>
+
+<footer class="wrap foot">
+  <p>SuperModal.js v1.0.0, MIT License. Made by <a href="https://www.joomlaworks.net">JoomlaWorks</a>; it started as the image modal of Simple Image Gallery Pro.</p>
+  <p>Photos: CC0, from the sample data of Joomla 3.x UTD (<a href="https://github.com/fevangelou/supermodal.js/blob/main/docs/images/CREDITS.md">credits</a>). Icons: Bootstrap Icons, MIT.</p>
+</footer>
+
+</body>
+</html>

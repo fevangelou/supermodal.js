@@ -1,0 +1,218 @@
+/*
+ * SuperModal.js docs site: a light table with contact sheets
+ */
+
+:root {
+    --table:      #e9eef1;
+    --table-edge: #d5dde2;
+    --ink:        #15191d;
+    --muted:      #56616b;
+    --film:       #221d19;
+    --edge-print: #f0a43c;
+    --marker:     #d42a1f;
+    --code-bg:    #f7f9fa;
+    --measure:    68ch;
+    --gutter:     clamp(16px, 4vw, 48px);
+    --wide:       1180px;
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --table:      #1a1e22;
+        --table-edge: #2c3238;
+        --ink:        #e7ebee;
+        --muted:      #a3adb6;
+        --film:       #0f0d0b;
+        --marker:     #ff5a4c;
+        --code-bg:    #22272c;
+        color-scheme: dark;
+    }
+}
+
+*,
+*::before,
+*::after {box-sizing:border-box;}
+
+html {-webkit-text-size-adjust:100%;scroll-padding-top:24px;}
+
+body {margin:0;background:var(--table);color:var(--ink);font:400 1.0625rem/1.6 "Archivo", system-ui, sans-serif;font-variation-settings:"wdth" 100;}
+
+a {color:inherit;text-decoration-color:var(--marker);text-decoration-thickness:2px;text-underline-offset:3px;}
+
+a:hover {color:var(--marker);}
+
+:focus-visible {outline:3px solid var(--marker);outline-offset:3px;}
+
+img {max-width:100%;}
+
+/* no ligatures: <!-- and => must read as typed */
+code,
+pre {font:400 .875rem/1.6 "JetBrains Mono", ui-monospace, monospace;font-variant-ligatures:none;}
+
+:not(pre) > code {padding:.1em .35em;border-radius:3px;background:var(--code-bg);box-shadow:inset 0 0 0 1px var(--table-edge);font-size:.85em;white-space:nowrap;}
+
+.wrap {max-width:var(--wide);margin-right:auto;margin-left:auto;padding-right:var(--gutter);padding-left:var(--gutter);}
+
+/* Header */
+.top {display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding-top:20px;padding-bottom:20px;}
+
+.wordmark {font-weight:800;font-variation-settings:"wdth" 125;font-size:1.125rem;letter-spacing:-.01em;text-decoration:none;}
+
+.top nav {display:flex;flex-wrap:wrap;gap:4px clamp(14px, 3vw, 28px);font-size:.95rem;}
+
+.top nav a {text-decoration:none;}
+
+/* Hero */
+.hero {padding-top:clamp(24px, 6vw, 72px);}
+
+.hero h1 {margin:0;font-weight:900;font-variation-settings:"wdth" 125;font-size:clamp(2.25rem, 9.6vw, 7.5rem);line-height:.9;letter-spacing:-.035em;}
+
+/* the description under the name: same family, narrowest and lightest */
+.hero h1 span {display:block;margin-top:.12em;font-weight:300;font-variation-settings:"wdth" 62;font-size:.56em;line-height:1;letter-spacing:-.01em;color:var(--muted);}
+
+.lede {max-width:46ch;margin:28px 0 0;font-size:clamp(1.125rem, 2.2vw, 1.375rem);line-height:1.45;}
+
+.actions {display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;}
+
+.btn {display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border:2px solid var(--ink);border-radius:999px;background:transparent;color:var(--ink);font:600 1rem/1 "Archivo", system-ui, sans-serif;text-decoration:none;cursor:pointer;}
+
+.btn:hover {border-color:var(--marker);color:var(--marker);}
+
+.btn--solid {background:var(--ink);color:var(--table);}
+
+.btn--solid:hover {background:var(--marker);border-color:var(--marker);color:#fff;}
+
+/* Contact sheet: film strips with sprocket holes and edge print */
+.sheet {margin:clamp(40px, 7vw, 80px) auto 0;padding:0 var(--gutter);max-width:1400px;}
+
+.strip {position:relative;display:grid;grid-template-columns:repeat(5, minmax(0, 1fr));gap:10px;padding:30px 14px 40px;background:var(--film);transform:rotate(var(--tilt, 0deg));box-shadow:0 1px 0 rgba(0, 0, 0, .05);}
+
+.strip + .strip {margin-top:22px;--tilt:.4deg;}
+
+.strip:first-child {--tilt:-.5deg;}
+
+/* sprocket holes along both edges */
+.strip::before,
+.strip::after {content:"";position:absolute;left:8px;right:8px;height:9px;background:repeating-linear-gradient(90deg, transparent 0 7px, var(--table) 7px 17px, transparent 17px 26px);border-radius:2px;opacity:.9;}
+
+.strip::before {top:9px;}
+
+.strip::after {bottom:9px;}
+
+.frame {position:relative;display:block;aspect-ratio:16 / 9;background:#000;}
+
+.frame img {display:block;width:100%;height:100%;object-fit:cover;transition:filter .2s;}
+
+.frame:hover img {filter:brightness(1.12);}
+
+.frame:focus-visible {outline-color:var(--edge-print);}
+
+/* edge print: frame numbers in the film's rebate, as on a real contact sheet */
+.frame::after {content:attr(data-frame);position:absolute;left:0;bottom:-17px;color:var(--edge-print);font:700 10px/1 "Archivo", sans-serif;font-variation-settings:"wdth" 75;letter-spacing:.08em;white-space:nowrap;opacity:.85;}
+
+/* the china-marker circle around the pick of the roll */
+.frame--pick svg {position:absolute;inset:-14px -12px;width:calc(100% + 24px);height:calc(100% + 28px);overflow:visible;pointer-events:none;}
+
+.frame--pick path {fill:none;stroke:var(--marker);stroke-width:3.5;stroke-linecap:round;}
+
+.sheet-note {margin-top:22px;margin-bottom:0;color:var(--muted);font-size:.95rem;}
+
+@media (max-width: 760px) {
+    /* phones: each strip scrolls sideways, like pulling film through your fingers */
+    .strip {grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:62vw;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;--tilt:0deg;}
+
+    .strip + .strip {--tilt:0deg;}
+
+    .strip:first-child {--tilt:0deg;}
+
+    .strip::-webkit-scrollbar {display:none;}
+
+    .strip::before,
+    .strip::after {width:calc(62vw * 5 + 10px * 4);right:auto;}
+
+    .frame {scroll-snap-align:center;}
+}
+
+/* Sections */
+section {padding-top:clamp(64px, 10vw, 120px);}
+
+h2 {margin:0 0 12px;font-weight:800;font-variation-settings:"wdth" 112;font-size:clamp(2rem, 5vw, 3.25rem);line-height:1;letter-spacing:-.025em;}
+
+h3 {margin:0 0 6px;font-weight:700;font-size:1.2rem;line-height:1.3;}
+
+.intro {max-width:var(--measure);margin:0 0 36px;color:var(--muted);font-size:1.125rem;}
+
+p {max-width:var(--measure);}
+
+/* Features: a two-column list of plain statements */
+.features {display:grid;grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr));gap:28px 48px;margin:0;padding:0;list-style:none;}
+
+.features li {padding-top:14px;border-top:2px solid var(--ink);}
+
+.features h3 {font-size:1.05rem;}
+
+.features p {margin:0;color:var(--muted);}
+
+/* Demos */
+.demo {display:grid;grid-template-columns:minmax(0, 5fr) minmax(0, 7fr);gap:24px 48px;padding:32px 0;border-top:1px solid var(--table-edge);}
+
+.demo:first-of-type {border-top:0;}
+
+.demo p {margin:0 0 14px;color:var(--muted);}
+
+@media (max-width: 860px) {
+    .demo {grid-template-columns:minmax(0, 1fr);}
+}
+
+.thumbs {display:grid;grid-template-columns:repeat(auto-fill, minmax(104px, 1fr));gap:6px;margin:0 0 16px;}
+
+.thumbs a {display:block;aspect-ratio:1;}
+
+.thumbs img {display:block;width:100%;height:100%;object-fit:cover;}
+
+.single {display:block;max-width:360px;margin:0 0 16px;}
+
+.single img {display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;}
+
+.log {min-height:96px;max-height:160px;margin:12px 0 0;padding:10px 12px;overflow:auto;border-radius:4px;background:var(--code-bg);box-shadow:inset 0 0 0 1px var(--table-edge);color:var(--muted);font:400 .8125rem/1.6 "JetBrains Mono", ui-monospace, monospace;}
+
+.log:empty::before {content:"Events appear here as you use any demo on this page.";}
+
+/* Code */
+.code {position:relative;margin:0 0 16px;}
+
+.code pre {margin:0;padding:16px 18px;overflow-x:auto;border-radius:4px;background:var(--code-bg);box-shadow:inset 0 0 0 1px var(--table-edge);tab-size:4;}
+
+.copy {position:absolute;top:8px;right:8px;padding:4px 10px;border:1px solid var(--table-edge);border-radius:999px;background:var(--table);color:var(--muted);font:600 .75rem/1.4 "Archivo", system-ui, sans-serif;cursor:pointer;}
+
+.copy:hover {color:var(--marker);border-color:var(--marker);}
+
+/* Reference tables */
+.ref h3 {margin-top:48px;}
+
+.table {overflow-x:auto;}
+
+table {width:100%;border-collapse:collapse;font-size:.95rem;}
+
+th,
+td {padding:10px 16px 10px 0;border-bottom:1px solid var(--table-edge);text-align:left;vertical-align:top;}
+
+th {font-weight:700;border-bottom:2px solid var(--ink);}
+
+td:first-child {white-space:nowrap;}
+
+td p {margin:0;}
+
+/* Footer */
+.foot {margin-top:clamp(64px, 10vw, 120px);padding-top:28px;padding-bottom:48px;border-top:2px solid var(--ink);color:var(--muted);font-size:.95rem;}
+
+.foot p {margin:0 0 6px;}
+
+@media (prefers-reduced-motion: reduce) {
+    .strip,
+    .strip + .strip,
+    .strip:first-child {--tilt:0deg;}
+
+    .frame img {transition:none;}
+}
