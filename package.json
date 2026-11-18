@@ -1,0 +1,37 @@
+{
+  "name": "supermodal.js",
+  "version": "1.0.0",
+  "description": "A dependency-free image modal (lightbox) with galleries, zoom, swipe, slideshow and a grid view.",
+  "main": "dist/supermodal.min.js",
+  "style": "dist/supermodal.min.css",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "playwright test --config tests/playwright.config.js",
+    "test:min": "MIN=1 playwright test --config tests/playwright.config.js",
+    "serve": "node tests/server.js"
+  },
+  "keywords": [
+    "lightbox",
+    "modal",
+    "gallery",
+    "image",
+    "zoom",
+    "vanilla",
+    "dialog"
+  ],
+  "homepage": "https://fevangelou.github.io/supermodal.js/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fevangelou/supermodal.js.git"
+  },
+  "author": "JoomlaWorks Ltd. (https://www.joomlaworks.net)",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "1.57.0",
+    "esbuild": "0.28.2"
+  }
+}
