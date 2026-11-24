@@ -133,10 +133,6 @@ npm install
 npm run build   # minifies src/ into dist/ and publishes docs/dist/<version>/ and docs/dist/latest/ (size budget enforced)
 ```
 
-To release: bump the version in `package.json`, in the headers of `src/supermodal.js` and `src/supermodal.css` and in
-the `dist/<version>/` links of `docs/index.html`, add it to `CHANGELOG.md`, run `npm run build`, then commit (including
-`docs/dist/<version>/`).
-
 ## Credits
 
 Icons: [Bootstrap Icons](https://icons.getbootstrap.com/) (MIT). Demo photos: CC0, from the sample data of Joomla 3.x UTD

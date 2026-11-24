@@ -23,6 +23,7 @@
     <a href="#demos">Demos</a>
     <a href="#install">Install</a>
     <a href="#reference">Reference</a>
+    <a href="#changelog">Changelog</a>
     <a href="https://github.com/fevangelou/supermodal.js">GitHub</a>
   </nav>
 </header>
@@ -310,6 +311,33 @@ parent.SuperModal.close();</code></pre></div>
     --sm-easing: cubic-bezier(.2, .7, .2, 1);
 }</code></pre></div>
     <p>SuperModal works in the current versions of Chrome, Edge, Firefox and Safari, on desktops and phones.</p>
+  </section>
+
+  <section class="wrap" id="changelog" aria-labelledby="changelog-title">
+    <h2 id="changelog-title">What's new</h2>
+    <p class="intro">Every release, in short. Each one keeps its own address under <code>dist/</code>, and every change is listed in the <a href="https://github.com/fevangelou/supermodal.js/blob/main/CHANGELOG.md">full changelog on GitHub</a>.</p>
+    <div class="news">
+      <article class="rel">
+        <div class="when"><b>v1.1.0</b>November 24, 2026<br><span class="badge">latest</span></div>
+        <div>
+          <h3>Images without links</h3>
+          <p>One line of JavaScript turns images you can't add markup to, like the images of a WordPress post, into a gallery: <code>SuperModal.bind()</code>.</p>
+          <ul>
+            <li><b>One or more selectors:</b> everything they match forms one gallery, in page order, images added later included.</li>
+            <li><b>Links are respected:</b> an image linked to its full-size file opens that file; an image linked to a page keeps its link.</li>
+            <li><b>Captions and sharp copies</b> come from the image's <code>&lt;figcaption&gt;</code> and <code>srcset</code>, and from lazy loaders' <code>data-src</code>.</li>
+            <li><b>Keyboard:</b> images without a link open with Enter or Space, and the full-screen image keeps their <code>alt</code> text.</li>
+          </ul>
+        </div>
+      </article>
+      <article class="rel">
+        <div class="when"><b>v1.0.0</b>November 18, 2026</div>
+        <div>
+          <h3>The first release</h3>
+          <p>The image modal of Simple Image Gallery Pro as a library of its own: galleries from plain links, zoom and pan, swipe, a slideshow, a grid view, responsive images and a real <code>&lt;dialog&gt;</code>, with no dependencies. Compat mode opens links written for other lightboxes.</p>
+        </div>
+      </article>
+    </div>
   </section>
 </main>
 

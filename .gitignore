@@ -1,3 +1,7 @@
+# Agents: maintainer notes stay local
+AGENTS.md
+/.claude
+
 # OS and editor files
 .DS_Store
 Thumbs.db
