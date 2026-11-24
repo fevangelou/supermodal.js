@@ -1,5 +1,5 @@
 /*!
- * SuperModal.js v1.0.0 - styles
+ * SuperModal.js v1.1.0 - styles
  * https://github.com/fevangelou/supermodal.js
  * Copyright (c) 2026 JoomlaWorks Ltd. Released under the MIT License.
  */
@@ -37,6 +37,9 @@
     --sm-btn-bg:       rgba(0, 0, 0, .06);
     --sm-btn-bg-hover: rgba(0, 0, 0, .14);
 }
+
+/* Elements bound with SuperModal.bind() */
+[data-supermodal-bound] {cursor:zoom-in;}
 
 /* Dialog: full viewport */
 .supermodal {position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;box-sizing:border-box;background:var(--sm-bg);color:var(--sm-fg);font:var(--sm-font-size)/1.45 var(--sm-font);overflow:hidden;overscroll-behavior:contain;}

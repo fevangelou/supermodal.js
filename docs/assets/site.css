@@ -171,6 +171,14 @@ p {max-width:var(--measure);}
 
 .thumbs img {display:block;width:100%;height:100%;object-fit:cover;}
 
+.post {display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:6px;margin:0 0 16px;}
+
+.post figure {margin:0;}
+
+.post img {display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;}
+
+.post figcaption {margin-top:6px;font-size:13px;line-height:1.35;color:var(--muted);}
+
 .single {display:block;max-width:360px;margin:0 0 16px;}
 
 .single img {display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;}

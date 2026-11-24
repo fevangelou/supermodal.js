@@ -7,6 +7,9 @@
     // The page has a drop-in demo with other lightboxes' markup, so it turns compat mode on
     SuperModal.setDefaults({ compat: true });
 
+    // "Images without links" demo
+    SuperModal.bind('#post img');
+
     var actions = {
         'open-sheet': function () {
             SuperModal.open('#sheet a', 0);

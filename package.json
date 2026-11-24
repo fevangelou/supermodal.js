@@ -1,6 +1,6 @@
 {
   "name": "supermodal.js",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A dependency-free image modal (lightbox) with galleries, zoom, swipe, slideshow and a grid view.",
   "main": "dist/supermodal.min.js",
   "style": "dist/supermodal.min.css",

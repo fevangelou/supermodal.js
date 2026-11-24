@@ -1,11 +1,12 @@
 # SuperModal.js
 
 A dependency-free image modal (lightbox) for the web: galleries, zoom, swipe, a slideshow and a grid view for the
-images on your page. 9.5 KB of JavaScript and 2.4 KB of CSS, gzipped. MIT licensed.
+images on your page. 10 KB of JavaScript and 2.4 KB of CSS, gzipped. MIT licensed.
 
 **Demo and documentation: https://fevangelou.github.io/supermodal.js/**
 
 - Galleries from plain links, with a thumbnail strip and a grid view
+- Galleries from images you can't add markup to (a CMS post's, say), with one line of JavaScript
 - Zoom and pan with a mouse, the keyboard or a finger (double tap, pinch)
 - Swipe between images, swipe down to close
 - Slideshow, fullscreen and download buttons
@@ -23,8 +24,8 @@ a Joomla extension by [JoomlaWorks](https://www.joomlaworks.net).
 Load the two files. Every release stays at its own address; `dist/latest/` always has the newest one.
 
 ```html
-<link rel="stylesheet" href="https://fevangelou.github.io/supermodal.js/dist/1.0.0/supermodal.min.css">
-<script src="https://fevangelou.github.io/supermodal.js/dist/1.0.0/supermodal.min.js" defer></script>
+<link rel="stylesheet" href="https://fevangelou.github.io/supermodal.js/dist/1.1.0/supermodal.min.css">
+<script src="https://fevangelou.github.io/supermodal.js/dist/1.1.0/supermodal.min.js" defer></script>
 ```
 
 Or copy `supermodal.min.js` and `supermodal.min.css` from [`dist/`](dist/) to your site. The readable sources are in
@@ -44,6 +45,25 @@ Add `data-supermodal` to the links of your images. Links with the same name form
 ```
 
 An empty `data-supermodal` opens a single image. Links added to the page later work too.
+
+### Images without links
+
+When you can't change the markup, as with the images of a WordPress post, point `SuperModal.bind()` at them. Everything it
+matches becomes one gallery, in page order:
+
+```html
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  SuperModal.bind('body.single article .entry-content img');
+  // or several selectors: SuperModal.bind(['.entry-content img', '.wp-block-gallery img'], { theme: 'light' });
+});
+</script>
+```
+
+An image in a link to an image file (WordPress's "Link to: Media file") opens that file. An image in a link to a page
+keeps its link, and links with `data-supermodal` keep their own gallery. The caption comes from the image's
+`<figcaption>` (or `data-caption`); `srcset` and lazy loaders' `data-src`/`data-srcset` are used. Images without a link
+get keyboard access (Enter or Space), and images added later open too. `bind()` returns a function that unbinds.
 
 ### Markup
 
@@ -80,7 +100,8 @@ Set them with `SuperModal.setDefaults({...})`, or before the script loads:
 ### JavaScript
 
 ```js
-SuperModal.open(items, index, options); // items: a selector, a list of links, or [{ src, srcset, thumb, title, caption, download, html }]
+SuperModal.open(items, index, options); // items: a selector, a list of links, or [{ src, srcset, thumb, title, caption, alt, download, html }]
+SuperModal.bind(selectors, options);    // see "Images without links"; returns unbind()
 SuperModal.close();
 SuperModal.next(); SuperModal.prev(); SuperModal.goTo(2);
 SuperModal.isOpen();

@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0 (2026-11-24)
+
+- `SuperModal.bind(selectors, options)`: opens the modal for elements you can't add markup to, such as the images of a
+  CMS post. One selector or an array of them; all matches form one gallery, in page order, images added later included.
+  An image linked to an image file opens that file; one linked to a page keeps its link. Captions come from
+  `<figcaption>` (or `data-caption`), lazy loaders' `data-src`/`data-srcset` are understood, and bare images become
+  keyboard-accessible. Returns a function that unbinds.
+- Items take an `alt` text for the full-screen image (the image's own `alt` for bound images).
+
 ## 1.0.0 (2026-11-18)
 
 First release. SuperModal.js started as the image modal of Simple Image Gallery Pro (a Joomla extension by JoomlaWorks)

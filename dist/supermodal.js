@@ -1,5 +1,5 @@
 /*!
- * SuperModal.js v1.0.0 - a dependency-free image modal (lightbox)
+ * SuperModal.js v1.1.0 - a dependency-free image modal (lightbox)
  * https://github.com/fevangelou/supermodal.js
  * Copyright (c) 2026 JoomlaWorks Ltd. Released under the MIT License.
  * Icons: Bootstrap Icons (https://icons.getbootstrap.com/), MIT License.
@@ -253,6 +253,115 @@
         return { items: items, index: index, options: options };
     }
 
+    // SuperModal.bind(): images the page author can't add markup to (e.g. a CMS's post content)
+    var BINDINGS = []; // { sel, options }
+
+    // Lazy loaders keep the real address in data-src / data-lazy-src (and -srcset) until the image is in view
+    function imgAttr(img, name) {
+        var v = img.getAttribute(name) || '';
+        if (!v || /^data:|transparent\.gif$/.test(v)) {
+            v = img.getAttribute('data-' + name) || img.getAttribute('data-lazy-' + name) || '';
+        }
+        return v;
+    }
+
+    // The item a bound element opens, or null when it shouldn't open one: a link to a page stays a link, and links
+    // SuperModal opens anyway (data-supermodal, compat) keep their own gallery. A link to an image file opens that file.
+    function boundItem(el) {
+        var isImg = el.tagName === 'IMG';
+        var img = isImg ? el : el.querySelector('img');
+        var a = el.closest('a[href]') || (isImg ? null : el.querySelector('a[href]'));
+        if (!img && !a) {
+            return null;
+        }
+        if (a && (triggerInfo(a) || !isImageUrl(a.getAttribute('href')))) {
+            return null;
+        }
+        var thumb = img ? absUrl(imgAttr(img, 'src')) : '';
+        var src = a ? absUrl(a.getAttribute('href')) : thumb;
+        if (!src) {
+            return null;
+        }
+        var attr = function (name) {
+            return el.getAttribute(name) || (img && img.getAttribute(name)) || (a && a.getAttribute(name)) || '';
+        };
+        var fig = (img || el).closest('figure');
+        var cap = fig && fig.querySelector(':scope > figcaption');
+        return {
+            src: src,
+            srcset: attr('data-srcset') || (a || !img ? '' : imgAttr(img, 'srcset')),
+            thumb: thumb || src,
+            title: attr('data-title'),
+            caption: attr('data-caption') || (cap ? cap.innerHTML : ''),
+            alt: img ? img.alt : '',
+            download: absUrl(attr('data-download')),
+            html: '',
+            el: a || el
+        };
+    }
+
+    // The binding and element a click or key on `target` belongs to
+    function boundHit(target) {
+        for (var i = 0; i < BINDINGS.length; i++) {
+            var el = target.closest(BINDINGS[i].sel);
+            if (el && boundItem(el)) {
+                return { b: BINDINGS[i], el: el };
+            }
+        }
+        return null;
+    }
+
+    // Every element the binding matches now (images added later included), in page order, as one gallery
+    function openBound(hit) {
+        var current = boundItem(hit.el).src;
+        var items = [];
+        var seen = {};
+        var index = 0;
+        Array.prototype.forEach.call(document.querySelectorAll(hit.b.sel), function (el) {
+            var item = boundItem(el);
+            if (!item || seen[item.src]) {
+                return;
+            }
+            seen[item.src] = true;
+            if (item.src === current) {
+                index = items.length;
+            }
+            items.push(item);
+        });
+        var options = {};
+        Object.keys(hit.b.options).forEach(function (k) {
+            options[k] = hit.b.options[k];
+        });
+        options.trigger = hit.el;
+        open(items, index, options);
+    }
+
+    // Cursor for all bound elements; bare ones (no link) are also made reachable by keyboard
+    function mark(b) {
+        Array.prototype.forEach.call(document.querySelectorAll(b.sel), function (el) {
+            var item = boundItem(el);
+            if (!item || el.hasAttribute('data-supermodal-bound')) {
+                return;
+            }
+            var kb = item.el === el && el.tagName !== 'A' && !el.hasAttribute('tabindex');
+            el.setAttribute('data-supermodal-bound', kb ? 'kb' : '');
+            if (kb) {
+                el.tabIndex = 0;
+                el.setAttribute('role', 'button');
+            }
+        });
+    }
+
+    function unmarkAll() {
+        Array.prototype.forEach.call(document.querySelectorAll('[data-supermodal-bound]'), function (el) {
+            if (el.getAttribute('data-supermodal-bound') === 'kb') {
+                el.removeAttribute('tabindex');
+                el.removeAttribute('role');
+            }
+            el.removeAttribute('data-supermodal-bound');
+        });
+    }
+
     /* ------------------------------------------------------------------ *
      * UI
      * ------------------------------------------------------------------ */
@@ -491,6 +600,7 @@
                 thumb: absUrl(entry.thumb) || src,
                 title: String(entry.title || ''),
                 caption: String(entry.caption || ''),
+                alt: String(entry.alt || ''),
                 download: absUrl(entry.download),
                 html: String(entry.html || ''),
                 el: null
@@ -679,7 +789,7 @@
             }
             var img = ui.img;
             setSource(img, item);
-            img.alt = item.title || '';
+            img.alt = item.alt || item.title || '';
             d.classList.remove('is-loading');
             img.classList.remove('is-next', 'is-prev');
             if (dir) {
@@ -791,7 +901,15 @@
         }
         var info = triggerInfo(e.target);
         var a = linkOf(e.target);
-        if (!info || a.closest('.supermodal')) {
+        if (!info) {
+            var hit = e.target.closest && !e.target.closest('.supermodal') && boundHit(e.target);
+            if (hit) {
+                e.preventDefault();
+                openBound(hit);
+            }
+            return;
+        }
+        if (a.closest('.supermodal')) {
             return;
         }
         var g = collectGroup(a);
@@ -802,6 +920,18 @@
         g.options.group = info.group;
         g.options.trigger = a;
         open(g.items, g.index, g.options);
+    });
+
+    // Enter or Space on a bare bound image (links get their click from the browser)
+    window.addEventListener('keydown', function (e) {
+        var t = e.target;
+        if ((e.key === 'Enter' || e.key === ' ') && !e.defaultPrevented && t.getAttribute && t.getAttribute('data-supermodal-bound') === 'kb') {
+            var hit = boundHit(t);
+            if (hit) {
+                e.preventDefault();
+                openBound(hit);
+            }
+        }
     });
 
     /* ------------------------------------------------------------------ *
@@ -1345,6 +1475,48 @@
         });
     }
 
+    // SuperModal.bind(selectors, options): every element matching the selector (or array of selectors) opens the
+    // modal, all of them as one gallery. Calling it again with the same selectors refreshes it (keyboard access for
+    // images added since) and replaces its options. Returns a function that unbinds.
+    function bind(selectors, options) {
+        var sel = [].concat(selectors).filter(function (s) {
+            try {
+                return typeof s === 'string' && s.trim() && (document.querySelector(s) || true);
+            } catch (e) {
+                return false; // invalid selector
+            }
+        }).join(',');
+        if (!sel) {
+            return function () {};
+        }
+        var b = BINDINGS.filter(function (x) {
+            return x.sel === sel;
+        })[0];
+        if (!b) {
+            b = { sel: sel };
+            BINDINGS.push(b);
+        }
+        b.options = options || {};
+        var markIfBound = function () {
+            if (BINDINGS.indexOf(b) > -1) {
+                mark(b);
+            }
+        };
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', markIfBound);
+        } else {
+            markIfBound();
+        }
+        return function unbind() {
+            var i = BINDINGS.indexOf(b);
+            if (i > -1) {
+                BINDINGS.splice(i, 1);
+                unmarkAll();
+                BINDINGS.forEach(mark);
+            }
+        };
+    }
+
     /* ------------------------------------------------------------------ *
      * Frame mode: a page in an iframe with the modal's look (e.g. a picker or a form).
      * SuperModal.frame(url, { title }) / SuperModal.close(); the page inside can call parent.SuperModal.close().
@@ -1437,6 +1609,7 @@
             }
         },
         frame: openFrame,
+        bind: bind,
         next: next,
         prev: prev,
         goTo: goTo,
