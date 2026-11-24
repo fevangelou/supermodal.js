@@ -110,13 +110,11 @@ The current versions of Chrome, Edge, Firefox and Safari, on desktops and phones
 ```sh
 npm install
 npm run build   # minifies src/ into dist/ and publishes docs/dist/<version>/ and docs/dist/latest/ (size budget enforced)
-npm test        # Playwright: desktop + emulated phone (PW_CHANNEL=chrome to use an installed Google Chrome)
-npm run test:min
-npm run serve   # http://127.0.0.1:8765/docs/
 ```
 
-To release: bump the version in `package.json` and in the headers of `src/supermodal.js` and `src/supermodal.css`, add
-it to `CHANGELOG.md`, run `npm run build` and `npm test`, then commit (including `docs/dist/<version>/`).
+To release: bump the version in `package.json`, in the headers of `src/supermodal.js` and `src/supermodal.css` and in
+the `dist/<version>/` links of `docs/index.html`, add it to `CHANGELOG.md`, run `npm run build`, then commit (including
+`docs/dist/<version>/`).
 
 ## Credits
 

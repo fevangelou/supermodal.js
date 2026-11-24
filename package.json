@@ -9,10 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "node scripts/build.js",
-    "test": "playwright test --config tests/playwright.config.js",
-    "test:min": "MIN=1 playwright test --config tests/playwright.config.js",
-    "serve": "node tests/server.js"
+    "build": "node scripts/build.js"
   },
   "keywords": [
     "lightbox",
@@ -31,7 +28,6 @@
   "author": "JoomlaWorks Ltd. (https://www.joomlaworks.net)",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "1.57.0",
     "esbuild": "0.28.2"
   }
 }
