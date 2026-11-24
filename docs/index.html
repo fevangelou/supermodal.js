@@ -12,6 +12,17 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=JetBrains+Mono&display=swap">
 <link rel="stylesheet" href="dist/1.1.0/supermodal.min.css">
 <link rel="stylesheet" href="assets/site.css">
+<script>
+// "Loading the script later" demo: queued before SuperModal exists, run once it has loaded
+window.__queuedAt = performance.now();
+(window.SuperModalReady = window.SuperModalReady || []).push(function (SM) {
+  SM.bind('#late img');
+  var status = document.getElementById('late-status');
+  if (status) {
+    status.textContent = 'Queued at ' + Math.round(window.__queuedAt) + ' ms, run at ' + Math.round(performance.now()) + ' ms, once SuperModal had loaded.';
+  }
+});
+</script>
 <script src="dist/1.1.0/supermodal.min.js" defer></script>
 <script src="assets/site.js" defer></script>
 </head>
@@ -146,6 +157,38 @@ document.addEventListener(&#x27;DOMContentLoaded&#x27;, () =&gt; {
 
     <div class="demo">
       <div>
+        <h3>Loading the script later</h3>
+        <p>When SuperModal loads late (async, on scroll, or through a plugin that delays scripts), queue the code that needs it. This page queues its call before the script tag; it runs once the script has loaded. The images it enhanced are styled through <code>[data-supermodal-bound]</code>: hover one.</p>
+        <div class="post late" id="late">
+          <figure><img src="images/harbour/world-04-480.webp" srcset="images/harbour/world-04-480.webp 480w, images/harbour/world-04.webp 960w" sizes="(max-width: 760px) 33vw, 180px" width="480" height="270" alt="Boat Ship" loading="lazy"><figcaption>Boat Ship. Photo by Leeroy, CC0.</figcaption></figure>
+          <figure><img src="images/harbour/world-18-480.webp" srcset="images/harbour/world-18-480.webp 480w, images/harbour/world-18.webp 960w" sizes="(max-width: 760px) 33vw, 180px" width="480" height="270" alt="Fishingboat Ship" loading="lazy"><figcaption>Fishingboat Ship. Photo by Leeroy, CC0.</figcaption></figure>
+          <figure><img src="images/harbour/world-24-480.webp" srcset="images/harbour/world-24-480.webp 480w, images/harbour/world-24.webp 960w" sizes="(max-width: 760px) 33vw, 180px" width="480" height="270" alt="Catalina Harbor" loading="lazy"><figcaption>Catalina Harbor. Photo by Jay Mantri, CC0.</figcaption></figure>
+        </div>
+        <p class="status" id="late-status">Waiting for SuperModal…</p>
+      </div>
+      <div>
+<div class="code"><pre><code>&lt;!-- anywhere on the page, before or after the script --&gt;
+&lt;script&gt;
+window.SuperModalReady = window.SuperModalReady || [];
+window.SuperModalReady.push(function (SM) {
+  SM.bind(&#x27;#late img&#x27;);
+});
+&lt;/script&gt;
+
+&lt;script src=&quot;supermodal.min.js&quot; async&gt;&lt;/script&gt;
+
+&lt;style&gt;
+/* only the images SuperModal enhanced */
+#late img[data-supermodal-bound]:hover {
+  outline: 3px solid #d42a1f;
+  outline-offset: 3px;
+}
+&lt;/style&gt;</code></pre></div>
+      </div>
+    </div>
+
+    <div class="demo">
+      <div>
         <h3>From JavaScript</h3>
         <p>Open any list of images, with or without links on the page. This one starts the slideshow.</p>
         <button class="btn" type="button" data-demo="open-array">Open three images</button>
@@ -238,6 +281,7 @@ parent.SuperModal.close();</code></pre></div>
         <tr><td><code>data-download</code></td><td>a link</td><td>Shows a download button for this file.</td></tr>
         <tr><td><code>data-supermodal-item</code></td><td>any element</td><td>JSON with a <code>src</code> and a <code>group</code>: an image that belongs to a gallery but has no link on the page. These come first in the gallery.</td></tr>
         <tr><td><code>&lt;template class="supermodal-html" data-supermodal-for="holiday"&gt;</code></td><td>the page</td><td>Extra HTML shown under every image of that gallery, such as a credit line. Scripts in it are removed.</td></tr>
+        <tr><td><code>data-supermodal-bound</code></td><td>set by SuperModal</td><td>Added to every element <code>SuperModal.bind()</code> enhanced (the images that open the modal) and removed by its <code>unbind()</code>. Style them with it, e.g. <code>[data-supermodal-bound]:hover</code>. Images added later get it when you call <code>bind()</code> again; style by its presence, not its value.</td></tr>
         <tr><td><code>data-supermodal-gallery</code></td><td>a container</td><td>Compat mode: groups links that only have another lightbox's class (<code>.swipebox</code>, <code>.highslide</code>...) per container instead of per page.</td></tr>
       </tbody>
     </table></div>
@@ -318,6 +362,7 @@ parent.SuperModal.close();</code></pre></div>
     --sm-duration: .25s;
     --sm-easing: cubic-bezier(.2, .7, .2, 1);
 }</code></pre></div>
+    <p>Images enhanced by <code>SuperModal.bind()</code> carry a <code>data-supermodal-bound</code> attribute (with a zoom-in cursor by default), so you can style just those: <code>.entry-content img[data-supermodal-bound]:hover { opacity: .9; }</code>.</p>
     <p>SuperModal works in the current versions of Chrome, Edge, Firefox and Safari, on desktops and phones.</p>
   </section>
 

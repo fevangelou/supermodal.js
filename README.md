@@ -132,6 +132,10 @@ document.addEventListener('supermodal:change', (e) => console.log(e.detail.index
 Override the `--sm-*` variables on `.supermodal` (or `.supermodal--light` for the light theme), e.g.
 `.supermodal {--sm-accent:#0a7cff;}`. The full list is at the top of [`src/supermodal.css`](src/supermodal.css).
 
+Images enhanced by `SuperModal.bind()` carry a `data-supermodal-bound` attribute (and a zoom-in cursor), so you can
+style just those, e.g. `.entry-content img[data-supermodal-bound]:hover {opacity:.9;}`. `unbind()` removes it; images
+added later get it when you call `bind()` again. Style by its presence, not its value.
+
 ### Keyboard and gestures
 
 Arrows or swipe: previous/next. Home/End: first/last. Space: slideshow. Z, double click/tap, pinch, Ctrl + wheel: zoom
