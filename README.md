@@ -80,6 +80,34 @@ for `DOMContentLoaded`. It runs as soon as SuperModal is there, or at once if it
 
 SuperModal also fires `supermodal:ready` on `document` when it has loaded.
 
+### WordPress galleries
+
+WordPress galleries often link each image to its attachment page, a page of its own, so a click leaves the post (and
+`bind()` leaves such links alone). A few lines point the links at the images instead and make each gallery a gallery of
+its own, captions included. This works for the `[gallery]` shortcode and the Gallery block:
+
+```html
+<script>
+(window.SuperModalReady = window.SuperModalReady || []).push(function () {
+  document.querySelectorAll('.gallery, .wp-block-gallery').forEach(function (gallery, i) {
+    gallery.querySelectorAll('a > img').forEach(function (img) {
+      var a = img.parentNode;
+      var item = a.closest('.gallery-item, .wp-block-image');
+      var cap = item && item.querySelector('.gallery-caption, figcaption');
+      // photo-480x270.jpg → photo.jpg: the original upload, not the resized copy
+      a.href = img.src.replace(/-\d+x\d+(\.\w+)$/, '$1');
+      a.setAttribute('data-supermodal', 'gallery-' + i);
+      if (cap) a.setAttribute('data-caption', cap.innerHTML);
+    });
+  });
+});
+</script>
+```
+
+Run it before any `bind()` call for the same images, so the galleries keep their own groups. Until the script has run, a
+click still goes to the attachment page. If you'd rather change the links at the source, setting the galleries to
+"Link to: Media file" (or `link="file"` in the shortcode) leaves only the `data-supermodal` and caption lines to add.
+
 ### Markup
 
 | Attribute | What it does |

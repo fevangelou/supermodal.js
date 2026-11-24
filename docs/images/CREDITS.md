@@ -4,8 +4,8 @@ The photos in `docs/images/` come from the sample data of [Joomla 3.x UTD](https
 All of them are dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/): free to use,
 change and distribute, without attribution. They're credited anyway.
 
-`studio/`: 1920 × 1080 WebP, plus a 960 × 540 copy (`-960`) for smaller screens. `harbour/`: 960 × 540 WebP, plus a 480 px
-wide thumbnail (`-480`).
+`studio/`: 1920 × 1080 WebP, plus a 960 × 540 copy (`-960`) for smaller screens. `harbour/`: 960 × 540 WebP, plus a 480 × 270
+thumbnail named the WordPress way (`-480x270`).
 
 | Image | Title | Creator | Source |
 |---|---|---|---|

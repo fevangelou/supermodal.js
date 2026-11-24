@@ -180,6 +180,14 @@ p {max-width:var(--measure);}
 .post figcaption {margin-top:6px;font-size:13px;line-height:1.35;color:var(--muted);}
 
 /* Styled through the attribute bind() adds: only images SuperModal enhanced */
+#wp .gallery, #wp .wp-block-gallery {display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:6px;margin:6px 0 16px;padding:0;}
+
+#wp figure {margin:0;}
+
+#wp img {display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover;}
+
+#wp figcaption {margin-top:6px;font-size:13px;line-height:1.35;color:var(--muted);}
+
 .late img {transition:outline-color .2s, outline-offset .2s;outline:3px solid transparent;outline-offset:0;}
 
 .late img[data-supermodal-bound]:hover {outline-color:var(--marker);outline-offset:3px;}
