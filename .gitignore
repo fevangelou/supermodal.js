@@ -1,5 +1,16 @@
+# OS and editor files
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Dependencies, logs
 node_modules
-playwright-report/
-test-results/
+npm-debug.log*
+*.log
+
+# Development only: tests and their output
 tests/
+test-results/
+playwright-report/
