@@ -1627,4 +1627,30 @@
             fitGrid: fitGrid
         }
     };
+
+    // Code queued before this script loaded (lazy or async loading), in the order it was queued:
+    //   (window.SuperModalReady = window.SuperModalReady || []).push(function (SM) { SM.bind(...); });
+    // From now on push() runs a callback at once, so that same line works before and after loading.
+    // A callback that throws is reported without stopping the others.
+    function run(fn) {
+        if (typeof fn === 'function') {
+            try {
+                fn(window.SuperModal);
+            } catch (e) {
+                window.setTimeout(function () {
+                    throw e;
+                });
+            }
+        }
+    }
+    var queued = window.SuperModalReady;
+    window.SuperModalReady = {
+        push: function () {
+            Array.prototype.forEach.call(arguments, run);
+        }
+    };
+    if (queued && typeof queued.length === 'number') {
+        Array.prototype.forEach.call(queued, run);
+    }
+    emit('ready', window.SuperModal);
 })(window, document);

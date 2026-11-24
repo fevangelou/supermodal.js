@@ -7,6 +7,9 @@
   An image linked to an image file opens that file; one linked to a page keeps its link. Captions come from
   `<figcaption>` (or `data-caption`), lazy loaders' `data-src`/`data-srcset` are understood, and bare images become
   keyboard-accessible. Returns a function that unbinds.
+- `window.SuperModalReady`: code queued before the script loads (async, lazy or delayed loading) runs once it has
+  loaded; afterwards `push()` runs it at once, so the same line works either way. A `supermodal:ready` event fires on
+  `document` too.
 - Items take an `alt` text for the full-screen image (the image's own `alt` for bound images).
 
 ## 1.0.0 (2026-11-18)

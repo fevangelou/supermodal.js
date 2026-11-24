@@ -65,6 +65,21 @@ keeps its link, and links with `data-supermodal` keep their own gallery. The cap
 `<figcaption>` (or `data-caption`); `srcset` and lazy loaders' `data-src`/`data-srcset` are used. Images without a link
 get keyboard access (Enter or Space), and images added later open too. `bind()` returns a function that unbinds.
 
+### Loading the script later
+
+When the script loads late (async, on scroll, or by a plugin that delays scripts), queue your code instead of waiting
+for `DOMContentLoaded`. It runs as soon as SuperModal is there, or at once if it already is:
+
+```html
+<script>
+(window.SuperModalReady = window.SuperModalReady || []).push(function (SM) {
+  SM.bind('body.single article .entry-content img');
+});
+</script>
+```
+
+SuperModal also fires `supermodal:ready` on `document` when it has loaded.
+
 ### Markup
 
 | Attribute | What it does |
@@ -109,7 +124,7 @@ SuperModal.frame('picker.html', { title: 'Choose an image' }); // a page in an i
 SuperModal.setDefaults({ theme: 'light' });
 
 document.addEventListener('supermodal:change', (e) => console.log(e.detail.index, e.detail.item));
-// also supermodal:open and supermodal:close
+// also supermodal:open, supermodal:close, and supermodal:ready once the script has loaded
 ```
 
 ### Styling

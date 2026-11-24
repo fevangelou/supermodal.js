@@ -214,6 +214,12 @@ parent.SuperModal.close();</code></pre></div>
   &lt;img src=&quot;photos/harbour-small.jpg&quot; alt=&quot;The harbour&quot;&gt;
 &lt;/a&gt;</code></pre></div>
     <p>That's all. Links added later, for example by infinite scrolling, work too: SuperModal listens for clicks on the whole page.</p>
+    <p>If the script loads late, with <code>async</code>, on scroll or through a plugin that delays scripts, queue the code that needs it. It runs as soon as SuperModal has loaded, or at once if it already has:</p>
+<div class="code"><pre><code>&lt;script&gt;
+(window.SuperModalReady = window.SuperModalReady || []).push(function (SM) {
+  SM.bind(&#x27;.entry-content img&#x27;);
+});
+&lt;/script&gt;</code></pre></div>
   </section>
 
   <section class="wrap ref" id="reference" aria-labelledby="reference-title">
@@ -262,6 +268,7 @@ parent.SuperModal.close();</code></pre></div>
         <tr><td><code>SuperModal.isOpen()</code></td><td>Whether the modal is open.</td></tr>
         <tr><td><code>SuperModal.frame(url, { title })</code></td><td>Opens a page of your site in an iframe with the modal's look.</td></tr>
         <tr><td><code>SuperModal.setDefaults(options)</code></td><td>Changes the options for everything opened afterwards.</td></tr>
+        <tr><td><code>window.SuperModalReady</code></td><td>A queue for code that needs SuperModal when the script loads late: <code>(window.SuperModalReady = window.SuperModalReady || []).push(function (SM) { … })</code>. Queued functions run, in order, once the script has loaded; after that, <code>push</code> runs them at once.</td></tr>
       </tbody>
     </table></div>
 
@@ -270,6 +277,7 @@ parent.SuperModal.close();</code></pre></div>
     <div class="table"><table>
       <thead><tr><th>Event</th><th>When</th><th>Detail</th></tr></thead>
       <tbody>
+        <tr><td><code>supermodal:ready</code></td><td>The script has loaded (queued <code>SuperModalReady</code> code has run).</td><td>the <code>SuperModal</code> object</td></tr>
         <tr><td><code>supermodal:open</code></td><td>The modal opened.</td><td><code>index</code>, <code>item</code>, <code>items</code></td></tr>
         <tr><td><code>supermodal:change</code></td><td>Another image is shown.</td><td><code>index</code>, <code>item</code>, <code>items</code></td></tr>
         <tr><td><code>supermodal:close</code></td><td>The modal closed.</td><td><code>index</code>, <code>item</code></td></tr>
@@ -327,6 +335,7 @@ parent.SuperModal.close();</code></pre></div>
             <li><b>Links are respected:</b> an image linked to its full-size file opens that file; an image linked to a page keeps its link.</li>
             <li><b>Captions and sharp copies</b> come from the image's <code>&lt;figcaption&gt;</code> and <code>srcset</code>, and from lazy loaders' <code>data-src</code>.</li>
             <li><b>Keyboard:</b> images without a link open with Enter or Space, and the full-screen image keeps their <code>alt</code> text.</li>
+            <li><b>Late loading:</b> code queued in <code>window.SuperModalReady</code> runs once the script loads, so it can load async, on scroll or through a plugin that delays scripts.</li>
           </ul>
         </div>
       </article>
